@@ -1,0 +1,10 @@
+export 'package:clasesegundocorte/presentation/screens/form/form_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/change_theme/change_theme.dart';
+export 'package:clasesegundocorte/presentation/screens/counter_screen/counter_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/infinity/infinity_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/controls/control_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/snack/snack_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/progress/progress_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/home/home_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/button/buttons_screen.dart';
+export 'package:clasesegundocorte/presentation/screens/card/card_screen.dart';

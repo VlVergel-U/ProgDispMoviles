@@ -1,0 +1,63 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(app());
+
+class app extends StatelessWidget {
+  const app({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'App',
+      home: home(),
+    );
+  }
+}
+
+class home extends StatefulWidget {
+  const home({super.key});
+
+  @override
+  State<home> createState() => _homeState();
+}
+
+class _homeState extends State<home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('App'),
+      ),
+      body: ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Image.network(
+                'https://www.mundodeportivo.com/alfabeta/hero/2022/05/Dragon-Ball-confirma-a-que-personaje-Goku-nunca-podra-ganarle.jpg?width=1200&aspect_ratio=16:9'),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Image.network(
+                'https://media.gq.com.mx/photos/5f6ce732bc946e88f6c96320/16:9/w_2560%2Cc_limit/goky%2520ultra%2520instinto.jpg'),
+          ),
+          TextButton(
+              onPressed: () {
+                print('Presionado');
+              },
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.deepOrange),
+              ),
+              child: const Text(
+                'Hamehameha',
+                style: TextStyle(color: Colors.red),
+              )),
+          SearchBar(
+            backgroundColor: MaterialStateProperty.all(Colors.amberAccent),
+          )
+        ],
+      ),
+    );
+  }
+}
