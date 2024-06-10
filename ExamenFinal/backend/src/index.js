@@ -4,7 +4,7 @@ import { createUser, createSongs } from "./libs/init.js";
 
 async function main() {
   try {
-    await sequelize.sync({ force: false});
+    await sequelize.sync({ force: false });
     createUser();
     createSongs();
     server.listen(3000, () => {

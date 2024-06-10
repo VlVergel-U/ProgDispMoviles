@@ -17,6 +17,8 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   List<Track> _tracks = [];
   bool _isLoading = false;
+  final getData = GetData();
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -24,15 +26,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     _getTracks();
   }
 
+  void _clearSearch() {
+    _searchController.clear();
+    _getTracks();
+  }
+
+
   Future<void> _getTracks() async {
     setState(() {
       _isLoading = true;
     });
     try {
-      final getData = GetData();
-      final accessToken = await getData.getAccessToken();
-      print('Access Token: $accessToken');
-      final tracks = await getData.getTracks(accessToken);
+      final tracks = await getData.getTracks();
       setState(() {
         _tracks = tracks;
         _isLoading = false;
@@ -45,6 +50,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
   }
 
+  Future<void> _getTrack() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final track = await getData.getTrack(context, _searchController);
+      setState(() {
+        _tracks.clear();
+        _tracks.add(track);
+        _isLoading = false;
+      });
+    } catch (e) {
+      print(e);
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifierProvider).themeData;
@@ -56,23 +81,51 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             context.go('/');
           },
         ),
+        title: Row(
+          children: [
+            Text(
+              'Playlist',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: SizedBox(
+                  width: 200, // ajusta el ancho del TextField
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Buscar',
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: theme.appBarTheme.backgroundColor,
+                      contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
+                    ),
+                    onSubmitted: (query) => _getTrack(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
         actions: [
+          IconButton(
+            onPressed: () {
+              _clearSearch();
+            },
+            icon: Icon(Icons.clear),
+          ),
           IconButton(
             onPressed: () {
               ref.read(themeNotifierProvider.notifier).toggleDarkMode();
             },
-            icon: Icon(ref.watch(themeNotifierProvider).isDarkMode ? Icons.dark_mode : Icons.light_mode),
+            icon: Icon(ref.watch(themeNotifierProvider).isDarkMode? Icons.dark_mode : Icons.light_mode),
           ),
         ],
         backgroundColor: theme.appBarTheme.backgroundColor,
         titleTextStyle: theme.appBarTheme.titleTextStyle,
         iconTheme: theme.appBarTheme.iconTheme,
-        title: const Text(
-          'Playlist',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
       backgroundColor: theme.scaffoldBackgroundColor,
       body: _isLoading

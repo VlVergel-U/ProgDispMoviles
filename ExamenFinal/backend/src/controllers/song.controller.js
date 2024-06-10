@@ -1,6 +1,6 @@
 import { song } from "../models/song.model.js";
 import { artist } from "../models/artist.model.js";
-
+import { Op } from 'sequelize';
 
 export const getSong = async (req, res) => {
 
@@ -8,13 +8,17 @@ export const getSong = async (req, res) => {
 
     try {
            const searchSong = await song.findOne({
-                where: { name },
+                where: {
+                    name: {
+                        [Op.iLike]: '%' + name + '%'
+                    }
+                },
                 attributes: {
                     exclude: ['artistId']
                 },
                 include: {
                     model: artist,
-                    attributes: ['name']
+                    attributes: ['artist_name']
                 }
             });
 
@@ -38,7 +42,7 @@ export const getSongs = async (req, res) => {
             },
             include: {
                 model: artist,
-                attributes: ['name']
+                attributes: ['artist_name']
             }
         });
 

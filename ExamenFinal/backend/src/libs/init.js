@@ -32,25 +32,25 @@ export const createSongs = async () => {
 
   if (countArtist === 0) {
       artists = await artist.bulkCreate([
-    { name: 'The Weeknd' },
-    { name: 'Adele' },
-    { name: 'Queen' },
-    { name: 'Eagles' },
-    { name: 'Tones and I' },
-    { name: 'Leonard Cohen' },
-    { name: 'Led Zeppelin' },
-    { name: 'Ed Sheeran' },
-    { name: 'Journey' },
-    { name: 'Guns N\' Roses' },
-    { name: 'Oasis' },
-    { name: 'Imagine Dragons' },
-    { name: 'Michael Jackson' },
-    { name: 'Johnny Cash' },
-    { name: 'Hozier' },
-    { name: 'Elvis Presley' },
-    { name: 'Nirvana' },
-    { name: 'John Legend' },
-    { name: 'Pink Floyd' },
+    { artist_name: 'The Weeknd' },
+    { artist_name: 'Adele' },
+    { artist_name: 'Queen' },
+    { artist_name: 'Eagles' },
+    { artist_name: 'Tones and I' },
+    { artist_name: 'Leonard Cohen' },
+    { artist_name: 'Led Zeppelin' },
+    { artist_name: 'Ed Sheeran' },
+    { artist_name: 'Journey' },
+    { artist_name: 'Guns N\' Roses' },
+    { artist_name: 'Oasis' },
+    { artist_name: 'Imagine Dragons' },
+    { artist_name: 'Michael Jackson' },
+    { artist_name: 'Johnny Cash' },
+    { artist_name: 'Hozier' },
+    { artist_name: 'Elvis Presley' },
+    { artist_name: 'Nirvana' },
+    { artist_name: 'John Legend' },
+    { artist_name: 'Pink Floyd' },
   ]);
   console.log("Artists created")
   }
@@ -89,7 +89,7 @@ export const createSongs = async () => {
       },
       {
           name: 'Stairway to Heaven',
-          img: 'https://sohokulture.com/wp-content/uploads/2023/11/Led-Zeppelin-IV.jpg',
+          img: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Stairway_to_Heaven_by_Led_Zeppelin_US_promotional_single.png',
           artistId: artists[6].id,
       },
       {
@@ -104,7 +104,7 @@ export const createSongs = async () => {
       },
       {
           name: 'Sweet Child o\' Mine',
-          img: 'https://psychophonyrecords.com/wp-content/uploads/2022/01/guns-1.jpg',
+          img: 'https://upload.wikimedia.org/wikipedia/en/1/15/Guns_N%27_Roses_-_Sweet_Child_o%27_Mine.png',
           artistId: artists[9].id,
       },
       {
@@ -119,7 +119,7 @@ export const createSongs = async () => {
       },
       {
           name: 'Billie Jean',
-          img: 'https://www.mehaceruido.com/wp-content/uploads/2018/12/thriller.jpg',
+          img: 'https://i.scdn.co/image/ab67616d0000b2739eb690cb054df293fe7711b8',
           artistId: artists[12].id,
       },
       {
@@ -149,7 +149,7 @@ export const createSongs = async () => {
       },
       {
           name: 'Wish You Were Here',
-          img: 'https://www.efeeme.com/wp-content/uploads/pink-floyd-09-01-13-a.jpg',
+          img: 'https://i1.sndcdn.com/artworks-rZvUWUOFMMxzEyy8-Q7FffA-t500x500.jpg',
           artistId: artists[18].id,
       },
   ]);

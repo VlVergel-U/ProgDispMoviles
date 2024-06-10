@@ -7,12 +7,7 @@ import songRoutes from "./routes/song.routes.js";
 const server = express();
 
 server.use(express.json());
-server.use(
-  cors({
-    origin: "http://localhost:56227",
-  })
-);
-
+server.use(cors());
 server.use(userRoutes);
 server.use(songRoutes);
 

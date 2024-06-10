@@ -11,7 +11,7 @@ export const artist = sequelize.define(
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      artist_name: {
         type: DataTypes.STRING,
         unique: false,
         validate: {
